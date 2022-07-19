@@ -1,0 +1,40 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Todo-App</a>
+    </div>
+  </nav>
+  
+  ><div class="container mt-4">
+  <h3> Todos</h3>
+  <hr />
+  <form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-md-6">
+      <input type="text" class="form-control" formControlName = "descricao" />
+    </div>
+    <div class="col-md-1">
+      <button type="submit" [disabled]="!form.get('descricao')?.valid" 
+      class="btn btn-primary">Add</button>
+    </div>
+  </div>
+  </form>
+  <hr />
+  <div class="row">
+  <div class="col-md-7">
+    <ul class="list-group>">
+      <li *ngFor="let todo of todos" class="list-group-item d-flex justify-content-between align-items-center">
+       <span class="{{ todo.finalizado ? 'finalizado' : ''}}"> 
+         {{ todo.descricao }}{{ todo.dataTermino}}
+       </span>
+        <div class="btn-group">
+          <button class="btn btn-success" [disabled]="todo.finalizado" (click)="finalizado(todo)">Concluído</button>
+          <button class="btn btn-danger" (click)="delete(todo)">Delete</button>
+  
+        </div>
+        </li>
+    </ul>
+  
+  </div>
+  </div>
+  
+  </div>
